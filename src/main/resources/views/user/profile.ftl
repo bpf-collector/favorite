@@ -97,7 +97,6 @@
                                             </div>
                                         </div>
                                         <h5 class="card-title mb-0">Public info</h5>
-                                        ${user}
                                     </div>
                                     <div class="card-body">
                                         <form>
