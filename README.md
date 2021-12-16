@@ -1,84 +1,47 @@
-## 项目构思
+### 项目名称: 网站收藏夹
 
-+ 数据库设计
-+ 项目结构: 单体应用(小型化)
-+ 配置文件: `application-dev.yml`
+### 项目描述
 
-## 用户模块部分
+&emsp;&emsp;本项目是基于**标签分类**的网站收藏夹，与浏览器中的收藏夹功能类似，但本项目是基于标签分类而非目录层级。
 
-```java
-@DynamicInsert
-@Entity
-@Table(name = "t_user")
-public class User {
+&emsp;&emsp;每个网站链接 `Link` 和 标签 `Mark` 按照用户隔离，不同用户之间相互不影响。
 
-    @Id
-    @GeneratedValue
-    private Integer id;
+### 工具与技术
 
-    @Column(length = 32)
-    private String name;
-    @Column(length = 32)
-    private String password;
-    @Column(columnDefinition = "char(8) default 'v39a470m'")
-    private String salt;
++ 语言： Java 1.8
++ IDE： IDEA 2020.2.2
++ 数据库： MySQL 5.7
++ 项目技术： Spring Boot、 Spring Data JPA
++ 前端模板： Bootstrap
++ 前端模板引擎： Freemarker
 
-    private LocalDateTime createTime;
-}
-```
+### 项目功能
 
-### 模块包结构
++ 用户: 登录、注册、重置密码、个人信息
 
-+ utils
-  - MD5加密工具类
-  - Json转换工具类
-+ dao: 使用 Spring Data JPA
-+ service
-+ controller
-+ enum: 常用的枚举类
-  - 返回结果代码枚举类
-  - 错误原因枚举类
-  - 用户权限枚举类
-+ interceptor: 拦截器
-  - 用户删除拦截器
-  - 用户更新拦截器
-+ result
-  - 基本的返回类型
-+ vo
-  - 前端返回对象
+<div style="text-align: center">
+    <img style="width: 700px" title="用户登录" src="https://img2020.cnblogs.com/blog/1623101/202112/1623101-20211216131220366-606227340.jpg">
+    <img style="width: 700px" title="个人信息" src="https://img2020.cnblogs.com/blog/1623101/202112/1623101-20211216131340643-582233017.jpg">
+</div>
 
-> 用户模块基本能够实现 增、删、改、查、登录、登出功能，并且在删除和更新之前使用**拦截器**进行权限拦截，具有一定的安全性和可拓展性。
++ 标签: 添加、删除、修改、根据一个或多个标签查询链接
 
-### 接口
+<div style="text-align: center">
+    <img style="width: 700px" title="添加标签" src="https://img2020.cnblogs.com/blog/1623101/202112/1623101-20211216131257656-1227908583.jpg">
+    <img style="width: 700px" title="所有标签" src="https://img2020.cnblogs.com/blog/1623101/202112/1623101-20211216131401975-129998285.jpg">
+</div>
 
-| URL | ReqMe | Method |
-| ---- | ---- | ---- |
-| `/user/insert` | `POST` | `BaseResult insertUser(User user)` |
-| `/user/delete/{id}` | `POST` | `BaseResult deleteUser(Integer id)` |
-| `/user/update/{id}` | `POST` | `BaseResult updatePassword(Integer id, String password)` |
-| `/user/get/{id}` | `POST` | `UserVO selectUser(Integer id)` |
-| `/user/login` | `POST` | `BaseResult login(String name, String password)` |
-| `/user/logout` | `POST` | `BaseResult logout()` |
++ 链接: 添加、删除、修改、根据链接名称模糊查询链接
 
-### 遇到的问题
+<div style="text-align: center">
+    <img style="width: 700px" title="添加链接" src="https://img2020.cnblogs.com/blog/1623101/202112/1623101-20211216131432915-2128348065.jpg">
+    <img style="width: 700px" title="所有链接" src="https://img2020.cnblogs.com/blog/1623101/202112/1623101-20211216131446889-2007136819.jpg">
+    <img style="width: 700px" title="选择查询的标签" src="https://img2020.cnblogs.com/blog/1623101/202112/1623101-20211216131540158-1884934246.jpg">
+    <img style="width: 700px" title="查询链接" src="https://img2020.cnblogs.com/blog/1623101/202112/1623101-20211216131500079-1295122117.jpg">
+</div>
 
-#### 懒加载
+### 下版本可提升
 
-```shell script
-org.hibernate.LazyInitializationException: could not initialize proxy [com.bpf.bean.User#6] - no Session
-```
-
-```yaml
-# 解决方法
-# https://blog.csdn.net/y_bccl27/article/details/116425789
-spring:
-  jpa:
-    properties:
-      hibernate:
-        enable_lazy_load_no_trans: true
-```
-
-#### JPA 选择性插入字段
-
-在 Bean 类上使用注解`@DynamicInsert`，当插入的时候会自动过滤null的字段。
-
++ 使用缓存
++ 用户权限之管理员功能
++ 用户头像设置
