@@ -15,6 +15,7 @@ public class PageMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(pageInterceptor).addPathPatterns("/index")
+                .addPathPatterns("/")
                 .addPathPatterns("/lay_right")
                 .addPathPatterns("/user/reset")
                 .addPathPatterns("/user/profile")

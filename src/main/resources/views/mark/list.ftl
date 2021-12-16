@@ -41,8 +41,8 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="dashboard.html">Pages</a></li>
-                            <li class="breadcrumb-item"><a href="#">Mark List</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Mark Tables</li>
+                            <li class="breadcrumb-item"><a href="#">All Mark</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Mark Table</li>
                         </ol>
                     </nav>
                 </div>
@@ -57,7 +57,7 @@
                                 <thead>
                                 <tr>
                                     <th style="width:40%;">Name</th>
-                                    <th style="width:25%">Link Count</th>
+                                    <th style="width:30%">Link Count</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>

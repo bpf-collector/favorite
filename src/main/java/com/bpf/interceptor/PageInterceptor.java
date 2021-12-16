@@ -15,7 +15,6 @@ public class PageInterceptor implements HandlerInterceptor {
         // 验证是否登录
         UserVO userVO = (UserVO) request.getSession().getAttribute("user");
         if (userVO == null || userVO.getId() == null) {
-            System.out.println("PageInterceptor 重定向: " + request.getContextPath() + "/login");
             response.sendRedirect(request.getContextPath() + "/login");
             return false;
         }

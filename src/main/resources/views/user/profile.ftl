@@ -46,7 +46,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="dashboard.html">Auth</a></li>
                             <#--<li class="breadcrumb-item"><a href="#">Pages</a></li>-->
-                            <li class="breadcrumb-item active" aria-current="page">Settings</li>
+                            <li class="breadcrumb-item active" aria-current="page">Profile</li>
                         </ol>
                     </nav>
                 </div>

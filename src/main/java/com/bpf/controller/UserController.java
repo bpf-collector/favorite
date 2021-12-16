@@ -160,8 +160,8 @@ public class UserController {
         }
 
         if (ObjectUtils.isEmpty(name)) {
-            // 用户名已存在
-            return BaseResult.failed().addMsg(failedKey, ReasonEnum.NAME_EXISTS.getMsg());
+            // 用户名不能为空
+            return BaseResult.failed().addMsg(failedKey, ReasonEnum.NO_NAME.getMsg());
         } else if (ObjectUtils.isEmpty(password)) {
             // 密码不能为空
             return BaseResult.failed().addMsg(failedKey, ReasonEnum.NO_PASSWORD.getMsg());
@@ -178,11 +178,11 @@ public class UserController {
                 userVO = new UserVO();
                 BeanUtils.copyProperties(user, userVO);
                 request.getSession().setAttribute("user", userVO);
-                return BaseResult.ok().addMsg("msg", "登录成功");
+                return BaseResult.ok().addMsg(successKey, "登录成功");
             }
         }
 
-        return BaseResult.failed().addMsg("msg", "登录失败");
+        return BaseResult.failed().addMsg(failedKey, "您还没注册，请注册后再登录");
     }
 
     /**

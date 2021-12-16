@@ -42,8 +42,8 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="dashboard.html">Pages</a></li>
-                            <li class="breadcrumb-item"><a href="#">Link List</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Link Tables</li>
+                            <li class="breadcrumb-item"><a href="#">All Link</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Link Table</li>
                         </ol>
                     </nav>
                 </div>
@@ -69,7 +69,7 @@
                                 <tbody>
                                     <#list user.linkList as link>
                                         <tr>
-                                            <td>${link.name}</td>
+                                            <td title="${link.url!''}">${link.name}</td>
                                             <input type="hidden" value="${link.url}" id="link-${link.id}">
                                             <#if link.marks?? && (link.marks?size>0) >
                                                 <td>${link.marks?size}</td>
